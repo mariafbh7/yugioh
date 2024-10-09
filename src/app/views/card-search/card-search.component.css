@@ -1,0 +1,58 @@
+
+  
+  .card:hover {
+    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+  }
+  
+
+  
+  .card__heading {
+    color: #2d3548; /* Color del encabezado */
+    font-size: 1.5rem; /* Tamaño de la fuente */
+    margin-bottom: 10px; /* Espaciado inferior */
+  }
+  
+  .card__description,
+  .card__attribute {
+    color: #333; /* Color del texto */
+    font-size: 0.9rem; /* Tamaño de la fuente */
+  }
+  .card {
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que nada sobresalga */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra para efecto de profundidad */
+    transition: transform 0.2s; /* Transición suave para hover */
+    width: 400px; /* Ancho fijo para la carta (ajusta según sea necesario) */
+    margin: 0 auto; /* Centra la carta horizontalmente */
+    transition: transform 0.3s;
+  }
+  
+  .card__background {
+    background-size: cover;
+    background-position: center;
+    height: 250px; /* Aumenta la altura de la imagen */
+  }
+  
+  .card__content {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    padding: var(--spacing-m); /* Espaciado interno */
+  }
+  
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las cartas se envuelvan en múltiples filas */
+    justify-content: center; /* Centra las cartas en el contenedor */
+    gap: 20px; /* Espacio entre las cartas */
+    margin-top: 20px; /* Espacio superior */
+  }
+  .card.selected {
+    transform: scale(1.05); /* Aumentar el tamaño de la carta seleccionada */
+    border: 2px solid #fff; /* Agregar un borde blanco */
+  }
+  body {
+    font-family: 'serif', serif; /* Fuente serif por defecto si Black Chancery no está disponible */
+  }
+  
+  #mi-encabezado{
+    font-family: 'Black Chancery', serif; /* Fuente Black Chancery para los encabezados */
+  }

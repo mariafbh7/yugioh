@@ -1,0 +1,100 @@
+<div class="navbar navbar-expand-lg navbar-dark" style="background-color: #6F4C3E;"> <!-- Color marrón -->
+  <div class="container">
+    <a class="navbar-brand" id="#">Yu-Gi-Oh! Card Search</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="ms-auto d-flex align-items-center flex-wrap"> <!-- Alinear elementos en el centro y permitir que se ajusten -->
+        <input
+          type="text"
+          class="form-control me-2 mb-2"
+          [(ngModel)]="searchTerm"
+          (input)="onSearchInputChange()"
+          placeholder="Buscar por nombre..."
+        />
+
+        <!-- Filtros seleccionables -->
+        <div class="me-2 mb-2">
+          <label class="form-label">Tipo de carta:</label>
+          <select class="form-select" [(ngModel)]="filters.type" (change)="onFilterChange()">
+            <option value="">Todos</option>
+            <option value="Normal Monster">Monstruo Normal</option>
+            <option value="Effect Monster">Monstruo de Efecto</option>
+            <option value="Spell Card">Carta Mágica</option>
+            <option value="Trap Card">Carta de Trampa</option>
+          </select>
+        </div>
+
+        <div class="me-2 mb-2">
+          <label class="form-label">Ataque (ATK):</label>
+          <select class="form-select" [(ngModel)]="filters.atk" (change)="onFilterChange()">
+            <option value="">Cualquier ATK</option>
+            <option value="gte2500">≥ 2500</option>
+            <option value="lt2500">&lt; 2500</option>
+          </select>
+        </div>
+
+        <div class="me-2 mb-2">
+          <label class="form-label">Defensa (DEF):</label>
+          <select class="form-select" [(ngModel)]="filters.def" (change)="onFilterChange()">
+            <option value="">Cualquier DEF</option>
+            <option value="gte2000">≥ 2000</option>
+            <option value="lt2000">&lt; 2000</option>
+          </select>
+        </div>
+
+        <div class="me-2 mb-2">
+          <label class="form-label">Nivel:</label>
+          <select class="form-select" [(ngModel)]="filters.level" (change)="onFilterChange()">
+            <option value="">Cualquier Nivel</option>
+            <option value="gte8">≥ 8</option>
+            <option value="lte4">&le; 4</option>
+          </select>
+        </div>
+
+        <div class="me-2 mb-2">
+          <label class="form-label">Raza:</label>
+          <select class="form-select" [(ngModel)]="filters.race" (change)="onFilterChange()">
+            <option value="">Cualquier Raza</option>
+            <option value="Dragon">Dragón</option>
+            <option value="Spellcaster">Hechicero</option>
+            <option value="Warrior">Guerrero</option>
+          </select>
+        </div>
+
+        <div class="me-2 mb-2">
+          <label class="form-label">Atributo:</label>
+          <select class="form-select" [(ngModel)]="filters.attribute" (change)="onFilterChange()">
+            <option value="">Cualquier Atributo</option>
+            <option value="LIGHT">Luz</option>
+            <option value="DARK">Oscuridad</option>
+            <option value="FIRE">Fuego</option>
+          </select>
+        </div>
+
+        <button class="btn btn-outline-light" (click)="ngOnInit()">Buscar</button> <!-- Botón para buscar -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Filtros seleccionables -->
+
+<div class="card-grid container mt-4">
+  <div *ngFor="let card of cards" class="card" [ngClass]="{ 'selected': selectedCardId === card.id }" (click)="selectCard(card.id)">
+
+    <div class="card__background" [style.backgroundImage]="'url(' + getImageUrl(card.id) + ')'" onerror="this.src='/CardBack.jpg';">
+      
+    </div>
+      <div class="card__content">
+          <h3 class="card__heading">{{ card.name }}</h3>
+          <p class="card__description" *ngIf="selectedCardId === card.id">{{ card.desc }}</p> <!-- Mostrar solo si la carta está seleccionada -->
+          <p class="card__attribute"><strong>ATK:</strong> {{ card.atk }}</p>
+          <p class="card__attribute"><strong>DEF:</strong> {{ card.def }}</p>
+          <p class="card__attribute"><strong>Nivel:</strong> {{ card.level }}</p>
+      </div>
+  </div>
+</div>
